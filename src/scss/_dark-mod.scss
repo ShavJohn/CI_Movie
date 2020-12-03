@@ -1,0 +1,117 @@
+.dark-mod {
+    background-color: rgb(36, 35, 35);
+
+    .custom-carusel { 
+        background-color: rgb(36, 35, 35);
+
+    }
+
+    .search-input {
+
+        .input {
+            width: 250px;
+            border-radius: 20px;
+            color: dimgrey;
+            background-color: rgb(36, 35, 35);
+        }
+    }
+
+    .leng-select {
+        background-color: rgb(36, 35, 35);
+    }
+
+    .leng-select:hover {
+        color: rgb(131, 123, 123);
+    }
+
+
+    .recomend-movie {
+    
+        button {
+            background-color: rgb(36, 35, 35);
+        }
+    }
+
+    .pagination {
+        background-color: rgb(36, 35, 35);
+
+        .page-item {
+            background-color: rgb(36, 35, 35);
+
+            .page-link {
+                background-color: rgb(36, 35, 35);
+            }
+        }
+    }
+
+    .movie-info-table { 
+        background-color: rgb(53, 53, 53);
+        
+        .movie-info { 
+            color: white;
+
+            .title {
+                color: white
+            }
+
+            .info {
+                color: white;
+            }
+
+            .number-info {
+                color: white;
+            }
+
+            p {
+                color: white;
+            }
+        }
+    }
+
+    .room-body {
+        .custom-carusel {
+            background-color: rgb(53, 53, 53);
+        }
+
+
+        .movie-info-table-list {
+            outline: none;
+            color: white;
+
+            &.other {
+                background-color: rgb(53, 53, 53);
+            }
+
+            span {
+                color: rgb(139, 133, 133);
+            }
+        }
+    
+        .info-about-movie {
+            color: white;
+            background-color: rgb(53, 53, 53);
+        }
+    
+        .movie-rate-info {
+            text-align: right;
+    
+            p {
+                color: white;
+    
+                span {
+                    color: white;
+                }
+            }
+    
+            &:first-child {
+                font-size: 20px;
+            }
+        }
+    
+        .similar-movies {
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+        }
+    }
+}

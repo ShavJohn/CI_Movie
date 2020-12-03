@@ -1,0 +1,74 @@
+.recomend-movie {
+    color: rgb(218, 122, 32);
+    font-size: 20px;
+    font-weight: 5px;
+
+    button {
+        outline: none;
+        border: none;
+        background-color: white;
+        color: rgb(218, 122, 32);
+
+        svg {
+            font-size: 30px;
+        }
+    }
+}
+
+.rec-movie-list {
+        
+    .movie-info-table {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        position: relative;
+        transition: all .5s ease;
+        cursor: pointer;
+
+        .movie-afish {
+
+            .movie-img {
+                width: 80px;
+            }
+        }
+
+        .movie-info {
+            padding: 5px;
+
+            p {
+                margin-bottom: 1px;
+            }
+
+            .info {
+                color: gray;
+            }
+
+            .number-info {
+                color: rgb(68, 63, 63);
+            }
+
+
+            .title {
+                color: black;
+            }
+                
+            
+
+            .num-ifno {
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+                padding: 7px;
+                color: white;
+                border-radius: 50%;
+                background-color: rgb(218, 122, 32);
+            }
+        }
+
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 5px 7px 5px #888;
+        }
+    }
+
+}

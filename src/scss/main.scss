@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/bootstrap";
+@import "header";
+@import "top-movies";
+@import "footer";
+@import "home-body.scss";
+@import "movie-list";
+@import "movie-table";
+@import "watch-room";
+@import "search";
+@import "dark-mod";
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: rgba(252, 164, 1, 0.932);
+}
+
+
+
+::-webkit-scrollbar-track {
+    background: rgba(252, 51, 1, 0.678);
+}

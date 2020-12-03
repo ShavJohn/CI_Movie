@@ -1,0 +1,41 @@
+.custom-carusel {
+    background-color: dimgrey;
+    width: 100%;
+
+    .VueCarousel-slide {
+        padding: 20px;
+
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .movie-name {
+            color: white;
+            text-align: center;
+        }
+    }
+
+    .VueCarousel-navigation {
+        button {
+            position: absolute;
+            color: orange;
+            top: 50%;
+            
+            &:first-child {
+                left: 0;
+                transform: translate(50%, -50%);
+            }
+
+            &:last-child {
+                right: 0;
+                transform: translate(-50%, -50%);
+            }
+
+            i:before {
+                font-size: 35px;
+            }
+        }
+        
+    }
+}

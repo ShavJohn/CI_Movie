@@ -1,0 +1,143 @@
+.custom_header {
+    padding: 30px;
+
+    img {
+        width: 71px;
+    }
+
+    .leng-select {
+        margin: 0px 15px  0px;
+        border: none;
+        background-color: #fff;
+        color: dimgrey;
+        cursor: pointer;
+    }
+
+    .leng-select:hover {
+        color: rgb(44, 39, 39);
+    }
+
+    .search-input {
+
+        .input {
+            width: 250px;
+            border-radius: 20px;
+            color: dimgrey;
+        }
+
+        .input:focus {
+            box-shadow:0 0 0 2px #fe7900;
+            border-style: none;
+        }
+
+        .button {
+            margin: 20px 10px  0px;
+            border-radius: 10px;
+            background-color: #fe7900;
+            border-style: none;
+        }
+    }
+
+    a {
+        color: dimgrey;
+        text-decoration: none;
+        margin: 0 20px;
+    }
+
+    a:hover {
+        color: rgb(44, 39, 39);
+    }
+
+    .nav-toggle-collapse {
+        color: #fe7900;
+        border: none;
+        outline: none;
+        width: 50px;
+        
+        .nav-toggle-icon {
+            width: 50px;
+        }
+    }
+
+    .switch {
+        position: absolute;
+        right: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        color: #fff;
+        background-color: #fe7900 !important;
+        border-color: #fe7900;
+    }
+}
+
+
+@media (min-width: 1200px) { 
+    
+}
+
+@media (min-width: 992px) { 
+
+}
+
+@media (min-width: 768px) { 
+    
+}
+
+@media (max-width: 576px) { 
+    .custom_header {
+        img {
+            width: 71px;
+        }
+    
+        .leng-select {
+            margin: 20px 15px  0px;
+            height: 30px;
+        }
+    
+        .search-input {
+    
+            .input {
+                margin: 0px 10px;
+                width: 200px;
+                border-radius: 20px;
+            }
+
+            .button {
+                margin: 0px 10px;
+                border-radius: 10px;
+            }
+        }
+
+        a {
+            color: dimgrey;
+            text-decoration: none;
+            margin: 0 20px;
+            text-align: right;
+        }
+    
+        .nav-toggle-collapse {
+            color: #fe7900;
+            border: none;
+            outline: none;
+            width: 50px;
+            height: 50px;
+            
+            .nav-toggle-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    
+        .switch {
+            position: absolute;
+            right: 10px;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+

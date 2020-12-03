@@ -1,0 +1,49 @@
+.movie-lis {
+
+
+
+    .movie-afish {
+        overflow: hidden;
+        position: relative;
+        margin-top: 20px;
+        cursor: pointer;
+
+        .movie-info-table {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background: rgba(10, 10, 10, 0.753);
+            opacity: 0;
+            z-index: 99;
+            transition: all .5s ease;
+            
+            .info-table {
+                padding: 25px;
+                color: white;
+            }
+
+            .title {
+                font-size: 30px;
+            }
+
+            .first-word {
+                color: gray;
+            }
+        }
+
+        .movie-img {
+            transition: all .5s ease;
+        }
+
+        &:hover {
+            .movie-img {
+                transform: scale(1.5);
+            }
+    
+            .movie-info-table {
+                opacity: 10;
+            }
+        }
+    }
+
+}
