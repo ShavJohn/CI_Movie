@@ -17,7 +17,7 @@ export default {
     actions: {
         searchMovies(context, data){
             return new Promise((resolve, reject) => {
-                axios.get(`/search/movie?query=${data.search}&page=${data.page}`).then((res) => {
+                axios.get(`/search/movie?query=${data.search}&page=${data.page}&language=${i18n.locale}`).then((res) => {
                     context.commit('search_movies_setter', res.data)
                     resolve(res);
                 })

@@ -16,6 +16,10 @@
         }
     }
 
+    .night-mode-text {
+        color: dimgrey;
+    }
+
     .leng-select {
         background-color: rgb(36, 35, 35);
     }
@@ -32,16 +36,43 @@
         }
     }
 
+    .sim_movie_text {
+        color: white;
+    }
+
+    .voting-stars {
+        background-color: rgb(36, 35, 35);
+    }
+
+    .voting-stars-serch {
+        background-color: rgb(53, 53, 53);
+    }
+
     .pagination {
+        margin-top: 40px;
         background-color: rgb(36, 35, 35);
 
         .page-item {
             background-color: rgb(36, 35, 35);
 
             .page-link {
+                color: white;
+                margin: 0 2px;
+                border: none;
+                outline: none;
                 background-color: rgb(36, 35, 35);
             }
+
+            
         }
+
+        .active {
+
+            .page-link {
+                background-color:#fe7900;;
+            }
+        }
+
     }
 
     .movie-info-table { 

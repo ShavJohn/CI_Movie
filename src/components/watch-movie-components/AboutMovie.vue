@@ -31,7 +31,7 @@
                 </div>
             </b-col>
             <b-col md="8">
-                <b-form-rating :value="get_movie.vote_average" no-border variant="warning" stars="10"></b-form-rating>
+                <b-form-rating class="voting-stars" :value="get_movie.vote_average" readonly no-border variant="warning" stars="10"></b-form-rating>
             </b-col>
             <b-col md="4" class="movie-rate-info">
                 <div class="movie-rate-info">
@@ -48,7 +48,7 @@
                 <span class="similar-movies">Similar Movies</span>
                 <carousel
                 class="custom-carusel"
-                :perPage="4"
+                :perPageCustom="[[576, 2], [768, 3], [1024, 4], [1300, 4]]"
                 :navigationEnabled="true"
                 :navigationNextLabel='`<i class="fas fa-chevron-right"></i>`'
                 :navigationPrevLabel='`<i class="fas fa-chevron-left"></i>`'
@@ -57,7 +57,7 @@
                     <slide v-for="sim_movie in sim_movies.results" :key="sim_movie.id">
                         <router-link :to="{name: 'MovieWatch', params: { id: sim_movie.id}}">
                             <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + sim_movie.poster_path">
-                            <span>{{ sim_movie.title }}</span>
+                            <span class="sim_movie_text">{{ sim_movie.title }}</span>
                         </router-link>
                     </slide>
                 </carousel> 
@@ -68,11 +68,6 @@
 
 <script>
     export default {
-        data() {
-            return {
-                value: null
-            }
-        },
         watch: {
             $route(){
                 this.$store.dispatch('getMovie', this.$route.params.id)
@@ -89,10 +84,6 @@
             sim_movies(){
                 return this.$store.getters.sim_movies_getter
             }
-        },
-        created() {
-            this.$store.dispatch('getMovie', this.$route.params.id)
-            this.$store.dispatch('getSimMovies', this.$route.params.id)  
         },
         mounted() {
 

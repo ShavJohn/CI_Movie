@@ -3,6 +3,8 @@
     <customeHeader/>
     <top-movies/>
     <router-view/>
+    <i class="fas fa-chevron-up fixed" v-show="visible" @click="scrollTop"></i>
+    <vue-progress-bar></vue-progress-bar>
     <custome-footer/>
   </div>
 </template>
@@ -17,15 +19,59 @@ export default {
   data() {
     return {
       cheked:  localStorage.getItem('mode') ? localStorage.getItem('mode') :  false,
+      visible: false
     }
+  },
+  methods: {
+    scrollTop(){
+       this.intervalId = setInterval(() => {
+        if (window.pageYOffset === 0) {
+          clearInterval(this.intervalId)
+        }
+        window.scroll(0, window.pageYOffset - 50)
+      }, 20)
+    },
+    scrollListener: function (e) {
+      this.visible = window.scrollY > 150
+    }
+  },
+  mounted(){
+    this.$Progress.finish()
+    window.addEventListener('scroll', this.scrollListener)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.scrollListener)
   },
   created() {
    
     this.$root.$on('dark-checker', (val) => {
       this.cheked = val;
     })
+
+    this.$Progress.start()
+
+    this.$router.beforeEach((to, from, next) => {
+      //  does the page we want to go to have a meta.progress object
+      if (to.meta.progress !== undefined) {
+        let meta = to.meta.progress
+        // parse meta tags
+        this.$Progress.parseMeta(meta)
+      }
+      //  start the progress bar
+      this.$Progress.start()
+      //  continue to next page
+      next()
+    })
+    //  hook the progress bar to finish after we've finished moving router-view
+    this.$router.afterEach((to, from) => {
+      //  finish the progress bar
+      this.$Progress.finish()
+    })
+
   },
 }
+
+
 </script>
 
 <style>

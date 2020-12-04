@@ -2,11 +2,6 @@
     <div>
         <div class="recomend-movie">
             <span>{{ $t('rec-movies') }}</span>
-            <button>
-                <b-icon icon="arrow-counterclockwise">
-                
-                </b-icon>
-            </button>
         </div>
         <div class="rec-movie-list">
 

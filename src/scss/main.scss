@@ -35,3 +35,71 @@ a:hover {
 ::-webkit-scrollbar-track {
     background: rgba(252, 51, 1, 0.678);
 }
+
+.fixed {
+	background-color: #000;
+	padding: 10px 10px; 
+	font-size: 30px;
+	color: #F1C40F;
+	opacity: 0.8;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+	cursor: pointer;
+    border-radius: 50%;
+    z-index: 20;
+}
+.fixed:hover {
+    background-color: #F1C40F;
+    color: #000;
+}
+
+
+.loader_bg {
+    position: fixed;
+    z-index: 999999;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 0 solid transparent;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    
+}
+
+.loader::before, .loader::after {
+    content: '';
+    border: 1em solid rgba(252, 164, 1, 0.932);
+    border-radius: 50%;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    animation: loader 2s linear infinite;
+    opacity: 0;
+}
+
+.loader::before {
+    animation-delay: .5s;
+}
+
+@keyframes loader {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}

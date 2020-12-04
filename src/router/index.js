@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
-import MovieWatch from '../views/MovieWatch'
+// import MovieWatch from '../views/MovieWatch'
 import  SearchMovie from '../views/SearchMovie'
+import store from '../store'
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'Home', component: Home, meta: { title: 'HOME | CI_movie' } },
-  { path: '/movie/:id', name: 'MovieWatch', component: MovieWatch, meta: { title: 'WatchRoom | CI_movie'}},
+  { path: '/movie/:id', name: 'MovieWatch', component: () => import('../views/MovieWatch'), meta: { title: 'WatchRoom | CI_movie'}},
   { path: '/search/:search', name: 'SearchMovie', component: SearchMovie, meta: {title: 'Search | CI_movie'} }
   // { path: '/about', name: 'About',
   //   // route level code-splitting
@@ -24,10 +25,18 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title || 'Movie'
 
-  next()
+  if (to.name === 'MovieWatch') {
+    await store.dispatch('getMovie', to.params.id)
+    await store.dispatch('getSimMovies', to.params.id)
+    next()
+  }
+  else {
+    next()
+  }
+  
 })
 
 export default router

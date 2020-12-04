@@ -5,10 +5,26 @@ import router from './router'
 import store from './store'
 import './scss/main.scss'
 import i18n from './i18n'
+import VueProgressBar from 'vue-progressbar'
 
 
 require('./plugins');
 
+const options = {
+  color: '#fe7900',
+  failedColor: '#874b4b',
+  thickness: '5px',
+  transition: {
+    speed: '0.5s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

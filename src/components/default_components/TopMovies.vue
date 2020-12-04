@@ -3,7 +3,7 @@
         <carousel
 
         class="custom-carusel"
-        :perPage="8"
+        :perPageCustom="[[576, 2], [768, 4], [1024, 6], [1300, 8]]"
         :navigationEnabled="true"
         :navigationNextLabel='`<i class="fas fa-chevron-right"></i>`'
         :navigationPrevLabel='`<i class="fas fa-chevron-left"></i>`'

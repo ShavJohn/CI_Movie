@@ -19,7 +19,6 @@
             </b-navbar-toggle>
 
                 <b-collapse id="navbar-toggle-collapse" is-nav>
-                    
 
                     <b-nav-form class="search-input">
                         <b-form-input v-model="search" size="sm" class="mr-sm-2 input" placeholder="Search"></b-form-input>
@@ -28,7 +27,7 @@
                     <div class="switch">
                         <a class="random-link" href="#">{{  $t('random')  }}</a>
                         <b-form-checkbox @change="darModFunc" v-model="checked" name="check-button" switch></b-form-checkbox>
-                        <label>{{ $t('night-mode') }}</label>
+                        <label class="night-mode-text">{{ $t('night-mode') }}</label>
                     </div>
                 </b-collapse>    
             </b-navbar>
@@ -47,11 +46,31 @@
                 page: 1
             }
         },
+        computed: {
+            search_movies(){
+                return this.$store.getters.search_movies_getter
+            },
+            top_movies(){
+                return this.$store.getters.top_movies_getter
+            },
+            movie_list_ditails(){
+                return this.$store.getters.movies_getter
+            },
+            rec_movies(){
+                return this.$store.getters.rec_movies_getter
+            },
+            get_movie(){
+                return this.$store.getters.get_movie_getter
+            },
+            sim_movies(){
+                return this.$store.getters.sim_movies_getter
+            }
+        },
         methods: {
             darModFunc(){
                 this.$root.$emit('dark-checker', this.checked);
 
-                
+                localStorage.setItem('mode', this.checked)
             },
             searchMovie(){
                 let data = {
@@ -69,6 +88,29 @@
 
                 localStorage.setItem('leng', this.locale)
 
+                this.$Progress.start()
+
+                this.$store.dispatch('getMovieslist', this.movie_list_ditails.page)
+
+                this.$store.dispatch('getRecMovies')
+
+                this.$store.dispatch('getTopMovies')
+
+                if(this.$route.name == 'MovieWatch'){
+
+                    this.$store.dispatch('getMovie', this.$route.params.id)
+
+                    this.$store.dispatch('getSimMovies', this.$route.params.id)
+                }
+
+                let data = {
+                    search: this.search,
+                    page: this.page
+                }
+
+                this.$store.dispatch('searchMovies', data)
+
+                this.$Progress.finish()
             }
         }
 

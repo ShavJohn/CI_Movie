@@ -45,9 +45,9 @@ export default {
     actions: {
         getMovieslist(context, data){
             return new Promise((resolve, reject) => {
-                console.log(i18n.locale)
                 axios.get(`/movie/popular?page=${data}&language=${i18n.locale}`).then((res) => {
                     context.commit('movies_setter', res.data)
+                    resolve(res)
                 })
             }).catch(() => {
                 reject()
@@ -57,6 +57,7 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.get(`/movie/top_rated?page=1&language=${i18n.locale}`).then((res) => {
                     context.commit('rec_movies_setter', res.data)
+                    resolve(res)
                 })
             }).catch(() => {
                 reject()
@@ -66,6 +67,7 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.get(`/movie/popular?page=1&language=${i18n.locale}`).then((res) => {
                     context.commit('top_movies_setter', res.data)
+                    resolve(res)
                 })
             }).catch(() => {
                 reject()
@@ -75,18 +77,21 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.get(`/movie/${data}?language=${i18n.locale}`).then((res) => {
                     context.commit('get_movie_setter', res.data)
-                }) 
-            }).catch(() => {
-                reject()
+                    resolve(res)
+                }).catch(() => {
+                    reject()
+                })
             })
         },
         getSimMovies(context, data){
             return new Promise((resolve, reject) => {
                 axios.get(`movie/${data}/similar?page=1&language=${i18n.locale}`).then((res) => {
                     context.commit('sim_movies_setter', res.data)
+                    resolve(res)
                 })
-            }).catch(() => {
-                reject()
+                .catch(() => {
+                    reject()
+                })
             })
         }
     }

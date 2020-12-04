@@ -19,7 +19,7 @@
                                         <p>{{ search_movie.overview | trun_cate }}</p>
                                     </div>
                                     <div class="star-raiting"> 
-                                            <b-form-rating :value="search_movie.vote_average" no-border variant="warning" stars="10"></b-form-rating>
+                                            <b-form-rating class="voting-stars-serch" :value="search_movie.vote_average" readonly no-border variant="warning" stars="10"></b-form-rating>
                                         </div>
                                     <div class="num-ifno">
                                         <span class="raiting">{{ search_movie.vote_average }}</span>
@@ -63,7 +63,9 @@
                     search: this.$route.params.search,
                     page: val
                 }
+                this.$Progress.start()
                 this.$store.dispatch('searchMovies', data)
+                this.$Progress.finish()
             }
         },
         computed: {
