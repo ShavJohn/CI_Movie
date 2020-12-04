@@ -9,6 +9,18 @@
 @import "search";
 @import "dark-mod";
 
+a {
+    text-decoration: inherit;
+    color: inherit;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a:hover {
+    text-decoration: inherit;
+    color: inherit;
+}
+
 ::-webkit-scrollbar{
     width: 10px;
 }

@@ -8,8 +8,8 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'Home', component: Home, meta: { title: 'HOME | CI_movie' } },
-  { path: '/movie', name: 'MovieWatch', component: MovieWatch, meta: { title: 'WatchRoom | CI_movie'}},
-  { path: '/search', name: 'SearchMovie', component: SearchMovie, meta: {title: 'Search | CI_movie'} }
+  { path: '/movie/:id', name: 'MovieWatch', component: MovieWatch, meta: { title: 'WatchRoom | CI_movie'}},
+  { path: '/search/:search', name: 'SearchMovie', component: SearchMovie, meta: {title: 'Search | CI_movie'} }
   // { path: '/about', name: 'About',
   //   // route level code-splitting
   //   // this generates a separate chunk (about.[hash].js) for this route

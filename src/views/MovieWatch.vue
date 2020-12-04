@@ -20,9 +20,8 @@ import MovieTable from '../components/home-components/MovieTable.vue'
 import AboutMovie from '../components/watch-movie-components/AboutMovie.vue'
     export default {
         components: {MovieTable, AboutMovie },
+        created() {
+            
+        }
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -18,6 +18,7 @@ Vue.use(VueLazyload, {
 })
 
 
+window.i18n = i18n;
 
 
 new Vue({

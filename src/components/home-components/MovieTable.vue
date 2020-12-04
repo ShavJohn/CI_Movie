@@ -9,65 +9,25 @@
             </button>
         </div>
         <div class="rec-movie-list">
-            <div class="movie-info-table">
-                <div class="movie-afish">
-                    <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                </div>
-                <div class="movie-info">
-                    <div class="text-info">
-                        <p class="title">Women Fight</p>
-                        <p class="number-info"><span class="info">Year:</span> 2020</p>
-                        <p class="number-info"><span class="info">Votes:</span> 556</p>
+
+            <div class="movie-info-table" v-for="rec_movie in rec_movies.results" :key="rec_movie.id">
+                <router-link :to="{name: 'MovieWatch', params: { id: rec_movie.id}}">
+                    <div class="movie-afish">
+                        <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + rec_movie.poster_path">
                     </div>
-                    <div class="num-ifno">
-                        <span class="raiting">20</span>
+                    <div class="movie-info">
+                        <div class="text-info">
+                            
+                                <p class="title">{{ rec_movie.title }}</p>
+                                <p class="number-info"><span class="info">Year:</span> {{ rec_movie.realease_data }}</p>
+                                <p class="number-info"><span class="info">Votes:</span> {{ rec_movie.vote_count }}</p>
+                            
+                        </div>
+                        <div class="num-ifno">
+                            <span class="raiting">{{ rec_movie.vote_average }}</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="movie-info-table">
-                <div class="movie-afish">
-                    <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                </div>
-                <div class="movie-info">
-                    <div class="text-info">
-                        <p class="title">Women Fight</p>
-                        <p class="number-info"><span class="info">Year:</span> 2020</p>
-                        <p class="number-info"><span class="info">Votes:</span> 556</p>
-                    </div>
-                    <div class="num-ifno">
-                        <span class="raiting">20</span>
-                    </div>
-                </div>
-            </div>
-            <div class="movie-info-table">
-                <div class="movie-afish">
-                    <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                </div>
-                <div class="movie-info">
-                    <div class="text-info">
-                        <p class="title">Women Fight</p>
-                        <p class="number-info"><span class="info">Year:</span> 2020</p>
-                        <p class="number-info"><span class="info">Votes:</span> 556</p>
-                    </div>
-                    <div class="num-ifno">
-                        <span class="raiting">20</span>
-                    </div>
-                </div>
-            </div>
-            <div class="movie-info-table">
-                <div class="movie-afish">
-                    <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                </div>
-                <div class="movie-info">
-                    <div class="text-info">
-                        <p class="title">Women Fight</p>
-                        <p class="number-info"><span class="info">Year:</span> 2020</p>
-                        <p class="number-info"><span class="info">Votes:</span> 556</p>
-                    </div>
-                    <div class="num-ifno">
-                        <span class="raiting">20</span>
-                    </div>
-                </div>
+                </router-link>
             </div>
 
         </div>
@@ -76,7 +36,17 @@
 
 <script>
     export default {
-        
+        computed: {
+            rec_movies(){
+                return this.$store.getters.rec_movies_getter
+            }
+        },
+        mounted() {
+            this.$store.dispatch('getRecMovies')
+        },
+        methods: {
+
+        },
     }
 </script>
 

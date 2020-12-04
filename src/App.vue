@@ -16,10 +16,11 @@ export default {
   name: 'App',
   data() {
     return {
-      cheked:  false
+      cheked:  localStorage.getItem('mode') ? localStorage.getItem('mode') :  false,
     }
   },
   created() {
+   
     this.$root.$on('dark-checker', (val) => {
       this.cheked = val;
     })

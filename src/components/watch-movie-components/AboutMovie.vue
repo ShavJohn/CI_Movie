@@ -2,37 +2,36 @@
     <div>
         <b-row>
             <b-col md="4" >
-                <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
+                <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + get_movie.poster_path">
             </b-col>
             <b-col md="8">
                 <div class="movie-info-table-list">
-                    <p><span>Title</span> Chick Fight</p>
+                    <p><span>Title</span> {{ get_movie.title }}</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Original Name</span> Chick Fight</p>
+                    <p><span>Original Name</span> {{ get_movie.original_title }}</p>
                 </div>
                 <div class="movie-info-table-list">
-                    <p><span>Year</span> 2020</p>
+                    <p><span>Year</span> {{ get_movie.release_date }}</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Gener</span> Action Fight</p>
+                    <p><span>Gener</span> <strong v-for="genre in get_movie.genres" :key="genre.id"> {{ genre.name}} </strong></p>
                 </div>
                 <div class="movie-info-table-list">
-                    <p><span>Duration</span> 120 m</p>
+                    <p><span>Duration</span> {{ get_movie.runtime }} m</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Budget</span> 150.000 $</p>
+                    <p><span>Budget</span> {{ get_movie.popularity }} $</p>
                 </div>
             </b-col>
             <b-col md="12">
                 <div class="info-about-movie">
                     <h5>About Film</h5>
-                    <p>About film When Anna Wyncomb is introduced to an an underground, all-female fight club in order to turn the mess of her life around, she discovers she is much more personally connected to the history of the club than she could ever imagine.</p>
+                    <p>{{ get_movie.overview }}</p>
                 </div>
             </b-col>
             <b-col md="8">
-                <b-form-rating v-model="value"  variant="warning" stars="10"></b-form-rating>
-                <p class="mt-2">Value: {{ value }}</p>
+                <b-form-rating :value="get_movie.vote_average" no-border variant="warning" stars="10"></b-form-rating>
             </b-col>
             <b-col md="4" class="movie-rate-info">
                 <div class="movie-rate-info">
@@ -43,7 +42,7 @@
                 </div>
             </b-col>
             <b-col md="12">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ziaunYauFbc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="yohoho" :data-title="get_movie.title" class="w-100"></div>
             </b-col>
             <b-col md="12">
                 <span class="similar-movies">Similar Movies</span>
@@ -55,53 +54,11 @@
                 :navigationPrevLabel='`<i class="fas fa-chevron-left"></i>`'
                 :paginationEnabled="false"
                 >
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                    </slide>
-                    <slide>
-                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
+                    <slide v-for="sim_movie in sim_movies.results" :key="sim_movie.id">
+                        <router-link :to="{name: 'MovieWatch', params: { id: sim_movie.id}}">
+                            <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + sim_movie.poster_path">
+                            <span>{{ sim_movie.title }}</span>
+                        </router-link>
                     </slide>
                 </carousel> 
             </b-col>
@@ -115,7 +72,35 @@
             return {
                 value: null
             }
+        },
+        watch: {
+            $route(){
+                this.$store.dispatch('getMovie', this.$route.params.id)
+                this.$store.dispatch('getSimMovies', this.$route.params.id)
+                setTimeout(() => {
+                    yo()
+                }, 1000)     
+            }
+        },
+        computed: {
+            get_movie(){
+                return this.$store.getters.get_movie_getter
+            },
+            sim_movies(){
+                return this.$store.getters.sim_movies_getter
+            }
+        },
+        created() {
+            this.$store.dispatch('getMovie', this.$route.params.id)
+            this.$store.dispatch('getSimMovies', this.$route.params.id)  
+        },
+        mounted() {
+
+            setTimeout(() => {
+                    yo()
+                }, 1000)    
         }
+
     }
 </script>
 

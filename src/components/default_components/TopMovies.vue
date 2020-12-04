@@ -9,73 +9,13 @@
         :navigationPrevLabel='`<i class="fas fa-chevron-left"></i>`'
         :paginationEnabled="false"
         >
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
-            </slide>
-            <slide>
-                <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/4ZocdxnOO6q2UbdKye2wgofLFhB.jpg'">
-                <h6 class="movie-name">Chick Fight</h6>
+            <slide v-for="top_movie in top_movies.results" :key="top_movie.id">
+                <router-link :to="{name: 'MovieWatch', params: { id: top_movie.id}}">
+                    <div>
+                        <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + top_movie.poster_path">
+                        <h6  class="movie-name">{{ top_movie.title }}</h6>
+                    </div>
+                </router-link>
             </slide>
         </carousel> 
     </div>
@@ -83,7 +23,17 @@
 
 <script>
     export default {
-        
+        computed: {
+            top_movies(){
+                return this.$store.getters.top_movies_getter
+            }
+        },
+        mounted() {
+            this.$store.dispatch('getTopMovies')
+        },
+        methods: {
+            
+        }
     }
 </script>
 

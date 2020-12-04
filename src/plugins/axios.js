@@ -10,6 +10,8 @@ service.interceptors.request.use(
   config => {
     config.headers['X-Requested-With'] = 'XMLHttpRequest';
     config.headers['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
+    config.params = config.params || {};
+    config.params['api_key'] = '8b6828ecdb4a9de12bb85ee24a593c93';
     return config
   },
   error => {
@@ -17,6 +19,7 @@ service.interceptors.request.use(
     return Promise.reject(error)
   }
 );
+
 
 
 service.interceptors.response.use(
