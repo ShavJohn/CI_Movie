@@ -17,7 +17,6 @@
                     <b-icon class="nav-toggle-icon" v-else icon="menu-down"></b-icon>
                 </template>
             </b-navbar-toggle>
-
                 <b-collapse id="navbar-toggle-collapse" is-nav>
 
                     <b-nav-form class="search-input">
@@ -25,7 +24,7 @@
                         <b-button size="sm" class="my-2 my-sm-0 button" @click.prevent="searchMovie" type="submit">{{ $t('search') }}</b-button>
                     </b-nav-form>
                     <div class="switch">
-                        <a class="random-link" href="#">{{  $t('random')  }}</a>
+                        <button class="random-movie-btn" @click="randomMovie">{{  $t('random')  }}</button>
                         <b-form-checkbox @change="darModFunc" v-model="checked" name="check-button" switch></b-form-checkbox>
                         <label class="night-mode-text">{{ $t('night-mode') }}</label>
                     </div>
@@ -67,6 +66,13 @@
             }
         },
         methods: {
+            randomMovie(){
+                let page = Math.floor(Math.random() * this.movie_list_ditails.total_pages)
+                this.$store.dispatch('getRandomMovie', page).then((res) => {
+                    let item = res.data.results[Math.floor(Math.random() * res.data.results.length)]
+                    this.$router.push({name: 'MovieWatch', params: {id: item.id}})
+                })
+            },
             darModFunc(){
                 this.$root.$emit('dark-checker', this.checked);
 

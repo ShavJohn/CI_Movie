@@ -5,7 +5,6 @@
                 <iframe class="iframe-video" width="560" height="315" :src="'https://www.youtube.com/embed/' + video.results[0].key" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div id="copyright">
-            
                 <span>Compyright Ⓒ 2020 CI_movie.com All Rightts Reserved</span>
             </div>
         </div>
