@@ -4,7 +4,7 @@
             <b-navbar toggleable="lg" class="custom_header">
 
             <router-link :to="{name: 'Home'}"> 
-                <img src="../../assets/logos.png" alt="Logo">
+                <img src="../../assets/logo.png" alt="Logo">
             </router-link>   
             <select class="leng-select" v-model="locale" @change="setLeng()">
                 <option value="en" >{{ $t('en') }}</option>
@@ -100,23 +100,32 @@
 
                 this.$store.dispatch('getRecMovies')
 
-                this.$store.dispatch('getTopMovies')
+                this.$store.dispatch('getTopMovies').then(() => {
+                    this.$Progress.finish()
+                })
 
-                if(this.$route.name == 'MovieWatch'){
+                if(this.$route.name == 'MovieWatch') {
 
                     this.$store.dispatch('getMovie', this.$route.params.id)
 
-                    this.$store.dispatch('getSimMovies', this.$route.params.id)
+                    this.$store.dispatch('getSimMovies', this.$route.params.id).then(() => {
+                        this.$Progress.finish()
+                    })
+                }
+                
+                if(this.$route.name == 'SearchMovie') {
+
+                    let data = {
+                        search: this.search,
+                        page: this.page
+                    }
+
+                    this.$store.dispatch('searchMovies', data).then(() => {
+                        this.$Progress.finish()
+                    })
                 }
 
-                let data = {
-                    search: this.search,
-                    page: this.page
-                }
-
-                this.$store.dispatch('searchMovies', data)
-
-                this.$Progress.finish()
+                
             }
         }
 

@@ -4,6 +4,14 @@
     align-items: center;
     justify-content: center;
 
+
+    .no-result-massage {
+        width: 100%;
+        padding: 50px;
+        text-align: center;
+        color: black;
+    }
+
     .movie-info-table {
         display: flex;
         margin-top: 20px;

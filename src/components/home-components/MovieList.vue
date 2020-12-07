@@ -45,8 +45,10 @@
         watch: {
             'page': function (val) {
                 this.$Progress.start()
-                this.$store.dispatch('getMovieslist', val)
-                this.$Progress.finish()
+                this.$store.dispatch('getMovieslist', val).then(() => {
+                    this.$Progress.finish()
+                })
+                
                     
             }
         },
@@ -59,6 +61,7 @@
             this.$store.dispatch('getMovieslist', this.page ).then(() => {
                 this.$root.$emit('page-loader')
             })
+            
         },
     }
 </script>

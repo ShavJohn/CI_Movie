@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-row>
+        <b-row v-if="search_movies.results && search_movies.results.length">
             <b-col md="6" v-for="search_movie in search_movies.results" :key="search_movie.id">
                 <router-link :to="{name: 'MovieWatch', params: { id: search_movie.id}}">
                     <div class="movie-info-table">
@@ -30,6 +30,9 @@
                     </div>
                 </router-link>
             </b-col>
+        </b-row>
+        <b-row v-else class="no-result-massage">
+            <span>No Sreach Result</span>
         </b-row>
         <b-pagination
             v-model="page"
@@ -64,8 +67,9 @@
                     page: val
                 }
                 this.$Progress.start()
-                this.$store.dispatch('searchMovies', data)
-                this.$Progress.finish()
+                this.$store.dispatch('searchMovies', data).then(() => {
+                    this.$Progress.finish()
+                })
             }
         },
         computed: {
