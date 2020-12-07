@@ -14,9 +14,9 @@
                                 <div class="movie-info-table">
                                     <div class="info-table">
                                         <p class="title">{{ movie.title }}</p>
-                                        <p class="year"><span class="first-word">Year: </span>{{ movie.release_date }}</p>
-                                        <p class="votes"><span class="first-word">Votes: </span>{{ movie.vote_count }}</p>
-                                        <p class="popular"><span class="first-word">Popularity: </span> {{ movie.popularity }}</p>
+                                        <p class="year"><span class="first-word">{{ $t('year') }}: </span>{{ movie.release_date }}</p>
+                                        <p class="votes"><span class="first-word">{{ $t('total-votes') }}: </span>{{ movie.vote_count }}</p>
+                                        <p class="popular"><span class="first-word">{{ $t('popularity') }}: </span> {{ movie.popularity }}</p>
                                     </div>
                                 </div>
                                 <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + movie.poster_path">

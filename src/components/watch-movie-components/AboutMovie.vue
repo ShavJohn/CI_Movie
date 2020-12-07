@@ -6,27 +6,27 @@
             </b-col>
             <b-col md="8">
                 <div class="movie-info-table-list">
-                    <p><span>Title</span> {{ get_movie.title }}</p>
+                    <p><span>{{ $t('title') }}</span> {{ get_movie.title }}</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Original Name</span> {{ get_movie.original_title }}</p>
+                    <p><span>{{ $t('orig-name') }}</span> {{ get_movie.original_title }}</p>
                 </div>
                 <div class="movie-info-table-list">
-                    <p><span>Year</span> {{ get_movie.release_date }}</p>
+                    <p><span>{{ $t('year') }}</span> {{ get_movie.release_date }}</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Gener</span> <strong v-for="genre in get_movie.genres" :key="genre.id"> {{ genre.name}} </strong></p>
+                    <p><span>{{ $t('genre') }}</span> <strong v-for="genre in get_movie.genres" :key="genre.id"> {{ genre.name}} </strong></p>
                 </div>
                 <div class="movie-info-table-list">
-                    <p><span>Duration</span> {{ get_movie.runtime }} m</p>
+                    <p><span>{{ $t('duration') }}</span> {{ get_movie.runtime }} m</p>
                 </div>
                 <div class="movie-info-table-list other">
-                    <p><span>Budget</span> {{ get_movie.popularity }} $</p>
+                    <p><span>{{ $t('budget') }}</span> {{ get_movie.popularity }} $</p>
                 </div>
             </b-col>
             <b-col md="12">
                 <div class="info-about-movie">
-                    <h5>About Film</h5>
+                    <h5>{{ $t('about-film') }}</h5>
                     <p>{{ get_movie.overview }}</p>
                 </div>
             </b-col>
@@ -35,17 +35,17 @@
             </b-col>
             <b-col md="4" class="movie-rate-info">
                 <div class="movie-rate-info">
-                    <p><span>Movie rating:</span> 5.8</p>
+                    <p><span>{{ $t('movie-rating') }}:</span> 5.8</p>
                 </div>
                 <div class="movie-rate-info">
-                    <p><span>Total Votes:</span> 48</p>
+                    <p><span>{{ $t('total-votes') }}:</span> 48</p>
                 </div>
             </b-col>
             <b-col md="12">
                 <div id="yohoho" :data-title="get_movie.title" class="w-100"></div>
             </b-col>
             <b-col md="12" v-if="sim_movies.results.length">
-                <span class="similar-movies">Similar Movies</span>
+                <span class="similar-movies">{{ $t('sim-movies') }}</span>
                 <carousel
                 class="custom-carusel"
                 :perPageCustom="[[576, 2], [768, 3], [1024, 4], [1300, 4]]"
@@ -63,9 +63,9 @@
                 </carousel> 
             </b-col>
             <b-col md="12" v-else>
-                <span class="similar-movies">Similar Movies</span>
+                <span class="similar-movies">{{ $t('sim-movies') }}</span>
                 <div class="no-similar-movies text-white">
-                    <span>Thers are no similar movies</span>
+                    <span>{{ $t('no-sim-movies') }}</span>
                 </div>       
             </b-col>
         </b-row>

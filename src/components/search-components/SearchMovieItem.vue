@@ -32,7 +32,7 @@
             </b-col>
         </b-row>
         <b-row v-else class="no-result-massage">
-            <span>No Sreach Result</span>
+            <span>{{ $t('no-resul') }}</span>
         </b-row>
         <b-pagination
             v-model="page"

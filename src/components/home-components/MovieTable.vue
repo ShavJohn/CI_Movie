@@ -13,8 +13,8 @@
                     <div class="movie-info">
                         <div class="text-info">
                             <span class="title">{{ rec_movie.title }}</span>
-                            <p class="number-info"><span class="info">Year:</span> {{ rec_movie.release_date }}</p>
-                            <p class="number-info"><span class="info">Votes:</span> {{ rec_movie.vote_count }}</p>
+                            <p class="number-info"><span class="info">{{ $t('year') }}:</span> {{ rec_movie.release_date }}</p>
+                            <p class="number-info"><span class="info">{{ $t('total-votes') }}:</span> {{ rec_movie.vote_count }}</p>
                         </div>
                         <div class="num-ifno">
                             <span class="raiting">{{ rec_movie.vote_average }}</span>
