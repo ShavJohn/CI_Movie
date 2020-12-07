@@ -80,7 +80,9 @@
                 page: this.page
             }
 
-            this.$store.dispatch('searchMovies', data)
+            this.$store.dispatch('searchMovies', data).then(() => {
+                this.$root.$emit('page-loader')
+            })
         }
     }
 </script>

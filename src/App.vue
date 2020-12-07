@@ -1,5 +1,8 @@
 <template>
   <div id="app" :class="{'dark-mod' : cheked}">
+    <div class="loader_bg" v-show="loader">
+          <div class="loader"></div>
+      </div>
     <customeHeader/>
     <top-movies/>
     <router-view/>
@@ -19,7 +22,8 @@ export default {
   data() {
     return {
       cheked:  localStorage.getItem('mode') ? localStorage.getItem('mode') :  false,
-      visible: false
+      visible: false,
+      loader: true
     }
   },
   methods: {
@@ -37,10 +41,17 @@ export default {
   },
   mounted(){
     this.$Progress.finish()
+
     window.addEventListener('scroll', this.scrollListener)
+
+    this.$root.$on('page-loader', () => {
+      this.loader = false
+    })
   },
   beforeDestroy() {
+
     window.removeEventListener('scroll', this.scrollListener)
+  
   },
   created() {
    

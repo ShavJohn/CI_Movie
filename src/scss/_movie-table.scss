@@ -25,6 +25,11 @@
         transition: all .5s ease;
         cursor: pointer;
 
+
+        a { 
+            flex-wrap: nowrap;
+        }
+
         .movie-afish {
 
             .movie-img {

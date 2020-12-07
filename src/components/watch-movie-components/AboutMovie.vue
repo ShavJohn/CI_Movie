@@ -44,7 +44,7 @@
             <b-col md="12">
                 <div id="yohoho" :data-title="get_movie.title" class="w-100"></div>
             </b-col>
-            <b-col md="12">
+            <b-col md="12" v-if="sim_movies.results.length">
                 <span class="similar-movies">Similar Movies</span>
                 <carousel
                 class="custom-carusel"
@@ -61,6 +61,12 @@
                         </router-link>
                     </slide>
                 </carousel> 
+            </b-col>
+            <b-col md="12" v-else>
+                <span class="similar-movies">Similar Movies</span>
+                <div class="no-similar-movies text-white">
+                    <span>Thers are no similar movies</span>
+                </div>       
             </b-col>
         </b-row>
     </div>

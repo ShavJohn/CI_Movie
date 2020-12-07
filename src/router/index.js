@@ -28,7 +28,12 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title || 'Movie'
 
-  if (to.name === 'MovieWatch') {
+  if(to.name === 'Home') {
+    await store.dispatch('getMovieslist')
+    
+    next()
+  }
+  else if (to.name === 'MovieWatch') {
     await store.dispatch('getMovie', to.params.id)
     await store.dispatch('getSimMovies', to.params.id)
     next()
