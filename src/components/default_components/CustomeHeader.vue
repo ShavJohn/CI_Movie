@@ -76,7 +76,13 @@
             darModFunc(){
                 this.$root.$emit('dark-checker', this.checked);
 
-                localStorage.setItem('mode', this.checked)
+                if(localStorage.getItem('mode') === null ){
+                    localStorage.setItem('mode', this.checked)
+                }
+                else {
+                    localStorage.removeItem('mode')
+                }
+                
             },
             searchMovie(){
                 let data = {
