@@ -40,6 +40,9 @@ export default {
         },
         sim_movies_setter(state, data) {
             state.sim_movies = data
+        },
+        clear_movie(state) {
+            state.get_movie = {}
         }
     },
     actions: {
@@ -74,6 +77,7 @@ export default {
             })
         },
         getMovie(context, data) {
+            context.commit('clear_movie')
             return new Promise((resolve, reject) => {
                 axios.get(`/movie/${data}?language=${i18n.locale}`).then((res) => {
                     context.commit('get_movie_setter', res.data)

@@ -2,7 +2,7 @@
     <div>
         <b-row>
             <b-col md="4" >
-                <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + get_movie.poster_path">
+                <img v-if="get_movie.poster_path" class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + get_movie.poster_path">
             </b-col>
             <b-col md="8">
                 <div class="movie-info-table-list">
@@ -35,14 +35,18 @@
             </b-col>
             <b-col md="4" class="movie-rate-info">
                 <div class="movie-rate-info">
-                    <p><span>{{ $t('movie-rating') }}:</span> 5.8</p>
+                    <p><span>{{ $t('movie-rating') }}:</span> {{ get_movie.vote_average }}</p>
                 </div>
                 <div class="movie-rate-info">
-                    <p><span>{{ $t('total-votes') }}:</span> 48</p>
+                    <p><span>{{ $t('total-votes') }}:</span> {{ get_movie.vote_count }}</p>
                 </div>
             </b-col>
             <b-col md="12">
-                <div id="yohoho" :data-title="get_movie.title" class="w-100"></div>
+                <div class="player-box">
+                    <div v-if="Object.keys(get_movie).length">
+                        <div :data-title="get_movie.original_title" id="yohoho"  class="w-100"></div>
+                    </div>
+                </div>
             </b-col>
             <b-col md="12" v-if="sim_movies.results.length">
                 <span class="similar-movies">{{ $t('sim-movies') }}</span>
@@ -77,11 +81,19 @@
         watch: {
             $route(){
                 this.$store.dispatch('getMovie', this.$route.params.id)
-                this.$store.dispatch('getSimMovies', this.$route.params.id)
-                setTimeout(() => {
-                    yo()
-                }, 1000)     
-            }
+                    .then(() => {
+                        
+                        this.$store.dispatch('getSimMovies', this.$route.params.id)
+                            .then(() => {
+
+                                this.$nextTick(() => {
+                                    yo()
+                                })
+                            })
+
+                    })
+                
+            },
         },
         computed: {
             get_movie(){
@@ -92,10 +104,10 @@
             }
         },
         mounted() {
-
-            setTimeout(() => {
-                    yo()
-                }, 1000)    
+            
+            this.$nextTick(() => {
+                yo()
+            })   
         }
 
     }
