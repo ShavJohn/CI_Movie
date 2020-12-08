@@ -76,7 +76,7 @@
             darModFunc(){
                 this.$root.$emit('dark-checker', this.checked);
 
-                if(localStorage.getItem('mode') === null ){
+                if(localStorage.getItem('mode') === null){
                     localStorage.setItem('mode', this.checked)
                 }
                 else {
