@@ -104,6 +104,8 @@
 
                 this.$store.dispatch('getMovieslist', this.movie_list_ditails.page)
 
+                this.$store.dispatch('getGenars')
+
                 this.$store.dispatch('getRecMovies')
 
                 this.$store.dispatch('getTopMovies').then(() => {
