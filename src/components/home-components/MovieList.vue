@@ -5,11 +5,12 @@
             :total-rows="movie_list_ditails.total_results"
             :per-page="20"
             align="center"
-        ></b-pagination> 
+        ></b-pagination>
+        <genars-list :page_prop="page" /> 
             <b-row>
-                <b-col v-for="movie in movie_list_ditails.results" :key="movie.id" class="movie-lis" sm="6" md="6" lg="4" >
+                <b-col v-for="movie in movie_list_ditails.results" :key="movie.id" v-if="movie.id !== 632357" class="movie-lis" sm="6" md="6" lg="4" >
                     <router-link :to="{name: 'MovieWatch', params: { id: movie.id}}">
-                        <div class="movie-detales">
+                        <div  class="movie-detales">
                             <div class="movie-afish">
                                 <div class="movie-info-table">
                                     <div class="info-table">
@@ -31,23 +32,38 @@
             :total-rows="movie_list_ditails.total_results"
             :per-page="20"
             align="center"
-        ></b-pagination>     
+        ></b-pagination>
     </div>         
 </template>
 
 <script>
+import GenarsList from './GenarsList.vue'
     export default {
+        components: { GenarsList },
         data() {
             return {
-                page: 1
+                page: 1,
+                gener: ''
             }
         },
         watch: {
             'page': function (val) {
                 this.$Progress.start()
-                this.$store.dispatch('getMovieslist', val).then(() => {
+                if(this.gener !== '') {
+                    let data = {
+                        gener: this.gener,
+                        page: this.page
+                    }
+                    this.$store.dispatch('getMovies_with_ganers', data).then(() => {
+                        this.$store.commit('movies_setter', this.generMoviesList)
+                        this.$Progress.finish()
+                    })
+                }
+                else {
+                    this.$store.dispatch('getMovieslist', val).then(() => {
                     this.$Progress.finish()
                 })
+                }
                 
                     
             }
@@ -55,9 +71,17 @@
         computed: {
             movie_list_ditails(){
                 return this.$store.getters.movies_getter
+            },
+            generMoviesList() {
+                return this.$store.getters.movies_with_ganers_getters
             }
         },
         mounted() {
+            this.$root.$on('gener_transfer', (data) => {
+                this.gener = data.gener
+                this.page = data.page
+            })
+
             this.$store.dispatch('getMovieslist', this.page ).then(() => {
                 this.$root.$emit('page-loader')
             })
@@ -65,7 +89,3 @@
         },
     }
 </script>
-
-<style>
-
-</style>

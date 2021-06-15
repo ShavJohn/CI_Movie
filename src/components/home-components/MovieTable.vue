@@ -5,9 +5,9 @@
         </div>
         <div class="rec-movie-list">
 
-            <div class="movie-info-table" v-for="rec_movie in rec_movies.results" :key="rec_movie.id">
+            <div class="movie-info-table" v-for="rec_movie in rec_movies.results" :key="rec_movie.id" v-if="rec_movie.id !== 632357">
                 <router-link :to="{name: 'MovieWatch', params: { id: rec_movie.id}}">
-                    <div class="movie-afish">
+                    <div  class="movie-afish">
                         <img class="img-fluid movie-img" v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + rec_movie.poster_path">
                     </div>
                     <div class="movie-info">

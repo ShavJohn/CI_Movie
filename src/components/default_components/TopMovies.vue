@@ -9,9 +9,9 @@
         :navigationPrevLabel='`<i class="fas fa-chevron-left"></i>`'
         :paginationEnabled="false"
         >
-            <slide v-for="top_movie in top_movies.results" :key="top_movie.id">
-                <router-link :to="{name: 'MovieWatch', params: { id: top_movie.id}}">
-                    <div>
+            <slide v-for="top_movie in top_movies.results" :key="top_movie.id" v-if="top_movie.id !== 632357">
+                <router-link v-if="top_movie.id !== 632357" :to="{name: 'MovieWatch', params: { id: top_movie.id}}">
+                    <div >
                         <img v-lazy="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + top_movie.poster_path">
                         <h6  class="movie-name">{{ top_movie.title }}</h6>
                     </div>
