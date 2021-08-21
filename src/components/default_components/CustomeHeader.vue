@@ -21,7 +21,7 @@
 
                     <b-nav-form class="search-input">
                         <div class="position-relative">
-                            <b-form-input v-model="search" size="sm" class="mr-sm-2 input" @focus="openDropDown()"  placeholder="Search"></b-form-input>
+                            <b-form-input v-model="search" size="sm" class="mr-sm-2 input" @focus="openDropDown()" placeholder="Search"></b-form-input>
                             <div ref="dropDown" class="position-absalute width-100 height-0">
                                 <div class="search-content width-100 mh-200">
                                     <div class="padding hover-movie pointer" v-for="(searched, key) in searchedMovies" :key="key" @click="searchMovie(searched)">
@@ -143,6 +143,7 @@
                 this.$store.dispatch('searchMovies', data).then(() => {
                     this.$router.push({name: 'SearchMovie', params: {search: data.search}})
                     this.search = null
+                    this.closeDropDown()
                 })
                     
             },

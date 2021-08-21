@@ -116,7 +116,7 @@
     .search-content {
         background-color: #a39f9a;
         border-radius: 10px;
-}
+    }
 
     .position-relative {
         position: relative;
@@ -124,6 +124,8 @@
 
     .position-absalute {
         position: absolute;
+        top: 32px;
+        right: 3px;
         z-index: 10;
     }
 }
