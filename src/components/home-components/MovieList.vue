@@ -6,9 +6,9 @@
             :per-page="20"
             align="center"
         ></b-pagination>
-        <genars-list :page_prop="page" /> 
+        <genars-list/> 
             <b-row>
-                <b-col v-for="movie in movie_list_ditails.results" :key="movie.id" v-if="movie.id !== 632357" class="movie-lis" sm="6" md="6" lg="4" >
+                <b-col v-for="movie in movie_list_ditails.results" :key="movie.id" class="movie-lis" sm="6" md="6" lg="4" >
                     <router-link :to="{name: 'MovieWatch', params: { id: movie.id}}">
                         <div  class="movie-detales">
                             <div class="movie-afish">

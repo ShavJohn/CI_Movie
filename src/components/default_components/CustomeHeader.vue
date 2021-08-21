@@ -3,24 +3,34 @@
         <b-container>
             <b-navbar toggleable="lg" class="custom_header">
 
-            <router-link :to="{name: 'Home'}"> 
-                <img src="../../assets/logo.png" alt="Logo">
-            </router-link>   
-            <select class="leng-select" v-model="locale" @change="setLeng()">
-                <option value="en" >{{ $t('en') }}</option>
-                <option value="ru">{{ $t('ru') }}</option>
-            </select>
+                <router-link :to="{name: 'Home'}"> 
+                    <img src="../../assets/logo.png" alt="Logo">
+                </router-link>   
+                <select class="leng-select" v-model="locale" @change="setLeng()">
+                    <option value="en" >{{ $t('en') }}</option>
+                    <option value="ru">{{ $t('ru') }}</option>
+                </select>
 
-            <b-navbar-toggle target="navbar-toggle-collapse" class="nav-toggle-collapse">
-                <template #default="{ expanded }">
-                    <b-icon class="nav-toggle-icon" v-if="expanded" icon="menu-up"></b-icon>
-                    <b-icon class="nav-toggle-icon" v-else icon="menu-down"></b-icon>
-                </template>
-            </b-navbar-toggle>
+                <b-navbar-toggle target="navbar-toggle-collapse" class="nav-toggle-collapse">
+                    <template #default="{ expanded }">
+                        <b-icon class="nav-toggle-icon" v-if="expanded" icon="menu-up"></b-icon>
+                        <b-icon class="nav-toggle-icon" v-else icon="menu-down"></b-icon>
+                    </template>
+                </b-navbar-toggle>
                 <b-collapse id="navbar-toggle-collapse" is-nav>
 
                     <b-nav-form class="search-input">
-                        <b-form-input v-model="search" size="sm" class="mr-sm-2 input" placeholder="Search"></b-form-input>
+                        <div class="position-relative">
+                            <b-form-input v-model="search" size="sm" class="mr-sm-2 input" @focus="openDropDown()"  placeholder="Search"></b-form-input>
+                            <div ref="dropDown" class="position-absalute width-100 height-0">
+                                <div class="search-content width-100 mh-200">
+                                    <div class="padding hover-movie pointer" v-for="(searched, key) in searchedMovies" :key="key" @click="searchMovie(searched)">
+                                        <span>{{ searched }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
                         <b-button size="sm" class="my-2 my-sm-0 button" @click.prevent="searchMovie" type="submit">{{ $t('search') }}</b-button>
                     </b-nav-form>
                     <div class="switch">
@@ -42,6 +52,7 @@
                 checked: localStorage.getItem('mode') ? localStorage.getItem('mode') :  false,
                 locale:  this.$i18n.locale,
                 search: null,
+                searchedMovies: [],
                 page: 1
             }
         },
@@ -66,6 +77,12 @@
             }
         },
         methods: {
+            openDropDown() {
+                this.$refs.dropDown.classList.add("open-dropdown")
+            },
+            closeDropDown() {
+                this.$refs.dropDown.classList.remove("open-dropdown")
+            },
             randomMovie(){
                 let page = Math.floor(Math.random() * this.movie_list_ditails.total_pages)
                 this.$store.dispatch('getRandomMovie', page).then((res) => {
@@ -84,14 +101,48 @@
                 }
                 
             },
-            searchMovie(){
+            getSerchedList() {
+                this.searchedMovies = JSON.parse(localStorage.getItem('Searched'))
+            },
+            searchMovie(search){
+
                 let data = {
-                    search: this.search,
+                    search: typeof search === String || this.search === null ? search : this.search,
                     page: this.page
                 }
+
+                let searched = []
+                
+                if(this.search !== null) {
+                    if(localStorage.getItem('Searched')) {
+                        searched = JSON.parse(localStorage.getItem('Searched'))
+                        if(searched.length === 20 ){
+                            searched.shift()
+                        }
+                        let exist = false;
+                        searched.forEach((search, key) => {
+                            if(search === this.search) {
+                                exist = true
+                            }
+                        });
+                        if(!exist) {
+                            searched.push(this.search)
+                        }
+                        localStorage.setItem('Searched', JSON.stringify(searched))
+                        this.getSerchedList()
+                    }
+                    else {
+                        searched.push(this.search)
+
+                        localStorage.setItem('Searched', JSON.stringify(searched))
+                        this.getSerchedList()
+                    }
+                }
+                
                 
                 this.$store.dispatch('searchMovies', data).then(() => {
                     this.$router.push({name: 'SearchMovie', params: {search: data.search}})
+                    this.search = null
                 })
                     
             },
@@ -135,7 +186,10 @@
 
                 
             }
-        }
+        },
+        mounted() {
+             this.getSerchedList()
+        },
 
     }
 </script>

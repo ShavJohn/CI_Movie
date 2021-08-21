@@ -49,6 +49,13 @@ export default {
         getMovieslist(context, data) {
             return new Promise((resolve, reject) => {
                 axios.get(`/movie/popular?page=${data}&language=${i18n.locale}`).then((res) => {
+               
+                    // res.data.results.forEach((movie, key) => {
+                    //     if(movie.id === 632357) {
+                    //        res.data.results.splice(key);
+                    //     }
+                    // });
+                    res.data.results = res.data.results.filter(movie => movie.id !== 632357)
                     context.commit('movies_setter', res.data)
                     resolve(res)
                 })

@@ -79,6 +79,53 @@
         background-color: #fe7900 !important;
         border-color: #fe7900;
     }
+
+    .width-100 {
+        width: 100%;
+    }
+
+    .height-0 {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .mh-200 {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .open-dropdown {
+        height: 200px;
+        transition: height 1s ease;
+    }
+    
+    .hover-movie:hover {
+        background-color: #fe7900;
+        color: #fff;
+        transition: background-color 1.5s ease, color 1.5s ease;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .padding {
+        padding: 20px;
+    }
+
+    .search-content {
+        background-color: #a39f9a;
+        border-radius: 10px;
+}
+
+    .position-relative {
+        position: relative;
+    }
+
+    .position-absalute {
+        position: absolute;
+        z-index: 10;
+    }
 }
 
 

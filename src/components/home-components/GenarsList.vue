@@ -1,5 +1,5 @@
 <template>
-    <div> 
+    <div>
         <b-dropdown :text="gener !== '' ? gener : 'Geners'" variant="warning" class="m-2">
             <b-dropdown-item v-for="movie in genarsList.genres" :key="movie.id" @click="filterWithGener(movie)">{{ movie.name }}</b-dropdown-item>
         </b-dropdown>
@@ -20,11 +20,6 @@
             },
             generMoviesList() {
                 return this.$store.getters.movies_with_ganers_getters
-            }
-        },
-        props: {
-            page_prop() {
-                required: false
             }
         },
         methods: {
