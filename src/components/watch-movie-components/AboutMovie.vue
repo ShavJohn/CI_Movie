@@ -43,7 +43,6 @@
             </b-col>
             <b-col md="12">
                 <div class="player-box">
-                    <pre style="background-color: aliceblue;">{{  get_movie.title  }}</pre>
                     <div v-if="Object.keys(get_movie).length">
                         <div :data-title="get_movie.title + ' ' + getYear(get_movie.release_date) + ' / ' + get_movie.original_title + ' ' +  getYear(get_movie.release_date)" id="kinoplayertop"  class="w-100"></div>
                     </div>
