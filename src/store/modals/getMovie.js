@@ -48,7 +48,7 @@ export default {
     actions: {
         getMovieslist(context, data) {
             return new Promise((resolve, reject) => {
-                axios.get(`/movie/popular?page=${data}&language=${i18n.locale}`).then((res) => {
+                axios.get(`/movie/popular?page=${data ? data : 1}&language=${i18n.locale}`).then((res) => {
                
                     // res.data.results.forEach((movie, key) => {
                     //     if(movie.id === 632357) {

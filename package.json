@@ -7,12 +7,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.6.2",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
-    "sass": "^1.26.10",
-    "sass-loader": "^7.3.1",
+    "sass": "^1.54.8",
+    "sass-loader": "^13.0.2",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-carousel": "^0.18.0",
@@ -24,12 +24,10 @@
     "vuex-i18n": "^1.13.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.2",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-router": "^5.0.8",
+    "@vue/cli-plugin-vuex": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
