@@ -43,8 +43,9 @@
             </b-col>
             <b-col md="12">
                 <div class="player-box">
+                    <pre style="background-color: aliceblue;">{{  get_movie.title  }}</pre>
                     <div v-if="Object.keys(get_movie).length">
-                        <div :data-title="get_movie.original_title" id="yohoho"  class="w-100"></div>
+                        <div :data-title="get_movie.title + ' ' + getYear(get_movie.release_date) + ' / ' + get_movie.original_title + ' ' +  getYear(get_movie.release_date)" id="kinoplayertop"  class="w-100"></div>
                     </div>
                 </div>
             </b-col>
@@ -87,12 +88,18 @@
                             .then(() => {
 
                                 this.$nextTick(() => {
-                                    yo()
+                                    runKinoplayertop();
                                 })
                             })
 
                     })
                 
+            },
+        },
+        methods: {
+            getYear(date) {
+                let dt = new Date(date)
+                return dt.getFullYear()
             },
         },
         computed: {
@@ -104,9 +111,8 @@
             }
         },
         mounted() {
-            
             this.$nextTick(() => {
-                yo()
+                runKinoplayertop();
             })   
         }
 
